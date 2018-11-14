@@ -1,6 +1,11 @@
 <h1>Listing articles</h1>
 
-<%= link_to "Post a new article?", new_article_path %>
+<ul>
+  <li><%= link_to("Post a new article?", new_article_path) %></li>
+  <li><%= link_to("Register as a new user?", new_user_registration_path) %></li>
+  <li><%= link_to("Sign in as an existing user?", user_registration_path) %></li>
+  <li><%= link_to("Sign out?", destroy_user_session_path) %></li>
+</ul>
 
 <table>
   <tr>
