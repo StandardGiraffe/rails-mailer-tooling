@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_155745) do
+ActiveRecord::Schema.define(version: 2018_11_15_190951) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -19,39 +19,36 @@ ActiveRecord::Schema.define(version: 2018_11_15_155745) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "inkings", force: :cascade do |t|
-    t.string "ink_company"
-    t.string "ink_name"
-    t.date "date_inked"
-    t.boolean "currently_inked"
-    t.integer "pen_id"
+  create_table "grinds", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pen_id"], name: "index_inkings_on_pen_id"
   end
 
-  create_table "nib_materials", force: :cascade do |t|
-    t.string "material"
-    t.integer "pen_id"
+  create_table "materials", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pen_id"], name: "index_nib_materials_on_pen_id"
   end
 
-  create_table "nib_types", force: :cascade do |t|
-    t.string "nib"
-    t.integer "pen_id"
+  create_table "nibs", force: :cascade do |t|
+    t.integer "grind_id"
+    t.integer "material_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pen_id"], name: "index_nib_types_on_pen_id"
+    t.index ["grind_id"], name: "index_nibs_on_grind_id"
+    t.index ["material_id"], name: "index_nibs_on_material_id"
   end
 
   create_table "pens", force: :cascade do |t|
-    t.string "company"
     t.string "model"
     t.boolean "lent_out"
+    t.integer "nib_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["nib_id"], name: "index_pens_on_nib_id"
+    t.index ["user_id"], name: "index_pens_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

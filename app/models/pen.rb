@@ -1,9 +1,6 @@
 class Pen < ApplicationRecord
+  belongs_to :user
+  belongs_to :nib
 
-  # Associations
-  has_many :inkings, dependent: :destroy
-
-  # Validations
-  validates_presence_of :company, :model, :lent_out
-
+  validates_presence_of :model, :lent_out
 end
