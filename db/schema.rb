@@ -10,11 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_212702) do
+ActiveRecord::Schema.define(version: 2018_11_15_155745) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inkings", force: :cascade do |t|
+    t.string "ink_company"
+    t.string "ink_name"
+    t.date "date_inked"
+    t.boolean "currently_inked"
+    t.integer "pen_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pen_id"], name: "index_inkings_on_pen_id"
+  end
+
+  create_table "nib_materials", force: :cascade do |t|
+    t.string "material"
+    t.integer "pen_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pen_id"], name: "index_nib_materials_on_pen_id"
+  end
+
+  create_table "nib_types", force: :cascade do |t|
+    t.string "nib"
+    t.integer "pen_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pen_id"], name: "index_nib_types_on_pen_id"
+  end
+
+  create_table "pens", force: :cascade do |t|
+    t.string "company"
+    t.string "model"
+    t.boolean "lent_out"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
