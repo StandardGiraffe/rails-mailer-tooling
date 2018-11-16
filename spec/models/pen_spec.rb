@@ -8,5 +8,5 @@ RSpec.describe Pen, type: :model do
 
   # Validation tests
   it { should validate_presence_of(:model) }
-  it { should validate_presence_of(:lent_out) }
+  it { should validate_inclusion_of(:lent_out).in_array([true, false]) }
 end

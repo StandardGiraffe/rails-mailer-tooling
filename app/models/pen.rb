@@ -2,5 +2,6 @@ class Pen < ApplicationRecord
   belongs_to :user
   belongs_to :nib
 
-  validates_presence_of :model, :lent_out
+  validates :model, presence: true
+  validates :lent_out, inclusion: { in: [true, false] }
 end
